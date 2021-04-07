@@ -1,6 +1,6 @@
 
 # [이코테 2021 강의 몰아보기]
-# chapter03_greedy
+# chapter03. greedy
 
 
 # 예제 3-1. 거스름돈
@@ -145,4 +145,6 @@ for i in scary:
         people = 0
 
 print(group)
+
+
 
