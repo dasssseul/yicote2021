@@ -106,7 +106,7 @@ for i in range(1, len(data)):
 print(result)
 
 
-# 문제3. 모험가 길
+# 문제3. 모험가 길드
 
 # 혼자 풀기
 
@@ -145,6 +145,81 @@ for i in scary:
         people = 0
 
 print(group)
+
+
+
+# 실전 문제1. 큰 수의 법칙
+
+# 혼자 풀어보기
+
+n, m, k = map(int, input().split())
+num = list(map(int, input().split()))
+# 내림차순 정렬
+num.sort(reverse=True)
+
+# 가장 큰 수 2개가 같은 수라면, 중복 더하기 가능
+if num[0] == num[1]:
+    result = num[0] * m
+
+# 다른 수라면, 한 세트로 묶어서 생각
+else:
+    set = num[0] * k + num[1]
+
+    # 한 세트의 개수로 나눠진다면,
+    if (m % (k + 1)) == 0:
+        result = set * (m // (k + 1))
+    else:
+        result = set * (m // (k + 1)) + num[0] * (m % (k + 1))
+
+print(result)
+
+
+# 답안 예시
+
+n, m, k = map(int, input().split())
+data = list(map(int, input().split()))
+
+data.sort()
+first = data[n-1]
+second = data[n-2]
+
+# 가장 큰 수가 더해지는 횟수 계산
+count = int(m / (k+1)) * k
+count += m % (k+1)
+
+result = 0
+# 가장 큰 수 더하기
+result += count * first
+# 두번째로 큰 수 더하기
+result += (m-count) * second
+
+print(result)
+
+
+
+# 실전 문제2. 숫자 카드 게임
+
+# 혼자 풀어보기
+
+n, m = map(int, input().split())
+card = []
+for i in range(n):
+    number = list(map(int, input().split()))
+    card.append(min(number))
+print(max(card))
+
+
+# 답안 예시
+n, m = map(int, input().split())
+
+result = 0
+for i in range(n):
+    data = list(map(int, input().split()))
+    min_value = min(data)
+    result = max(result, min_value)
+
+print(result)
+
 
 
 
