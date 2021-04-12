@@ -2,6 +2,7 @@
 # [이코테 2021 강의 몰아보기]
 # chapter04_implementation
 
+
 # 예제 4-1. 상하좌우
 
 n = int(input())
@@ -66,6 +67,7 @@ for i in range(8):
 
 print(count)
 
+
 # 답안 예시
 
 # 현재 나이트의 위치 입력받기
@@ -85,6 +87,7 @@ for step in steps:
         result += 1
 
 print(result)
+
 
 
 # 예제 4-3. 문자열 재정렬
@@ -107,6 +110,7 @@ alphabet.sort()
 for i in alphabet:
     print(chr(i),end="")
 print(result)
+
 
 # 답안 예시
 data = input()
@@ -131,4 +135,6 @@ if value != 0:
 
 # 최종 결과 출력(리스트를 문자열로 변환하여 출력)
 print(''.join(result))
+
+
 
