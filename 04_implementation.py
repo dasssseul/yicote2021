@@ -1,0 +1,134 @@
+
+# [이코테 2021 강의 몰아보기]
+# chapter04_implementation
+
+# 예제 4-1. 상하좌우
+
+n = int(input())
+x, y = 1, 1
+plans = input().split()
+
+# L, R, U, D에 따른 이동 방향
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+move_types = ['L', 'R', 'U', 'D']
+
+# 이동 계획을 하나씩 확인하기
+for plan in plans:
+    # 이동 후 좌표 구하기
+    for i in range(len(move_types)):
+        if plan == move_types[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+    # 공간을 벗어나는 경우 무시
+    if nx < 1 or ny < 1 or nx > n or ny > n:
+        continue
+    # 이동 수행
+    x, y = nx, ny
+
+print(x, y)
+
+
+# 예제4-2. 시각
+
+n = int(input())
+
+count = 0
+
+for i in range(n+1):
+    for j in range(60):
+        for k in range(60):
+            if '3' in str(i) + str(j) + str(k):
+                count += 1
+
+print(count)
+
+
+
+# 실전 문제 1. 왕실의 나이트
+
+# 혼자 풀어보기
+
+dx = [2, 2, -2, -2, 1, -1, 1, -1]
+dy = [1, -1, 1, -1, 2, 2, -2, -2]
+
+night = input()
+x = ord(night[0])
+y = int(night[1])
+count = 0
+
+for i in range(8):
+    nx = x + dx[i]
+    ny = y + dy[i]
+    if (ord('a') <= nx <= ord('h')) and (1 <= ny <= 8):
+        count += 1
+        nx, ny = x, y
+
+print(count)
+
+# 답안 예시
+
+# 현재 나이트의 위치 입력받기
+input_data = input()
+row = int(input_data[1])
+column = int(ord(input_data[0])) - int(ord('a')) + 1
+
+# 나이트가 이동할 수 있는 8가지 방향 정의
+steps = [(-2, -1), (-1, -2), (1, -2), (2, -1), (2, 1), (1, 2), (-1, 2), (-2, 1)]
+
+# 8가지 방향에 대하여 각 위치로 이동이 가능한지 확인
+result = 0
+for step in steps:
+    next_row = row + step[0]
+    next_column = column + step[1]
+    if next_row >= 1 and next_row <= 8 and next_column >= 1 and next_column <= 8:
+        result += 1
+
+print(result)
+
+
+# 예제 4-3. 문자열 재정렬
+
+# 혼자 풀어보기
+word = input()
+number = []
+alphabet = []
+result = 0
+for i in range(10):
+    number.append(str(i))
+
+for i in word:
+    if i in number:
+        result += int(i)
+    else:
+        alphabet.append(ord(i))
+alphabet.sort()
+
+for i in alphabet:
+    print(chr(i),end="")
+print(result)
+
+# 답안 예시
+data = input()
+result = []
+value = 0
+
+# 문자를 하나씩 확인하며
+for x in data:
+    # 알파벳인 경우 결과 리스트에 삽입
+    if x.isalpha():
+        result.append(x)
+    # 숫자는 따로 더하기
+    else:
+        value += int(x)
+
+# 알파벳 오름차순 정렬
+result.sort()
+
+# 숫자가 하나라도 존재하는 경우 가장 뒤에 삽입
+if value != 0:
+    result.append(str(value))
+
+# 최종 결과 출력(리스트를 문자열로 변환하여 출력)
+print(''.join(result))
+
