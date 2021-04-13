@@ -138,3 +138,67 @@ print(''.join(result))
 
 
 
+# 실전 문제 2. 게임 개발
+
+# 답안 예시
+n, m = map(int, input().split())
+x, y, direction = map(int, input().split())
+
+# 방문한 곳을 표시할 리스트 초기화
+mymap = [m*[0] for _ in range(n)]
+mymap[x][y] = 1
+
+# 북, 동, 남, 서 방향 벡터 설정
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+# 육지와 바다를 array 리스트에 입력받기
+array = []
+for _ in range(n):
+    array.append(list(map(int, input().split())))
+
+# 왼쪽 회전 함수 정의
+# 북 0, 동 1, 남 2, 서 3
+def turn_left():
+    global direction
+    direction -= 1
+    if direction == -1:
+        direction = 3
+
+# 방문 가능 경우의 수 cnt
+# 회전 횟수 turn_time
+cnt = 1
+turn_time = 0
+
+while True:
+    turn_left()
+    nx = x + dx[direction]
+    ny = y + dy[direction]
+    # 방문한 적이 없고, 육지라면 이동
+    if mymap[nx][ny] == 0 and array[nx][ny] == 0:
+        mymap[nx][ny] = 1
+        x = nx
+        y = ny
+        cnt += 1
+        turn_time = 0
+        continue
+    # 그 외의 경우에는 회전 횟수 증가
+    else:
+        turn_time += 1
+    # 네 방향 모두 이미 갔거나, 바다로 되어있다면
+    if turn_time == 4:
+        nx = x - dx[direction]
+        ny = y - dy[direction]
+        # 뒤로 한 칸 이동
+        if array[nx][ny] == 0:
+            x = nx
+            y = ny
+        # 뒤도 바다라면 브레이크
+        else:
+            break
+        turn_time = 0
+
+print(cnt)
+
+
+
