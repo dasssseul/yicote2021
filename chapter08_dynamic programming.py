@@ -2,6 +2,7 @@
 # [이코테 2021 강의 몰아보기]
 # chapter08_dynamic programming
 
+
 # 피보나치 함수(fibonacci Function)을 재귀함수로 구현
 
 def fibo(x):
@@ -10,6 +11,7 @@ def fibo(x):
     return fibo(x-1) + fibo(x-2)
 
 print(fibo(4))
+
 
 
 # 피보나치 수열 : 탑다운 다이나믹 프로그래밍 소스코드
@@ -30,6 +32,7 @@ def fibo(x):
     return d[x]
 
 print(fibo(99))
+
 
 
 # 피보나치 수열 : 바텀업 다이나믹 프로그래밍 소스코드
