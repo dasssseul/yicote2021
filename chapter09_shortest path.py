@@ -2,6 +2,7 @@
 # [이코테 2021 강의 몰아보기]
 # chapter09_shortest path
 
+
 # 다익스트라 알고리즘 : 간단한 구현 방법
 
 import sys
@@ -87,6 +88,7 @@ result = heapsort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])
 print(result)
 
 
+
 # 힙 라이브러리 사용 예제: 최대 힙
 
 import heapq
@@ -105,6 +107,7 @@ def heapsort(iterable):
 
 result = heapsort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])
 print(result)
+
 
 
 # 다익스트라 알고리즘 : 개선된 구현 방법
@@ -164,3 +167,5 @@ for i in range(1, n+1):
 
 
 
+        
+        
