@@ -210,6 +210,7 @@ for a in range(1, n+1):
 # 실전 문제1. 전보
 
 # 다익스트라 알고리즘 이용
+# 답안 예시
 
 import heapq
 import sys
@@ -258,9 +259,11 @@ print(count-1, max_distance)
 
 
 
+
 # 실전 문제2. 미래 도시
 
 # 플로이드 워셜 알고리즘 이용
+# 답안 예시
 
 INF = int(1e9)
 
