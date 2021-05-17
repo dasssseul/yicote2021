@@ -223,3 +223,57 @@ print(result)
 
 
 
+# 그리디 알고리즘 복습
+
+# 1번. 큰 수의 법칙
+
+n, m, k = map(int,input().split())
+numbers = list(map(int, input().split()))
+
+numbers.sort()
+first = numbers[n-1]
+second = numbers[n-2]
+
+count = (m//(k+1))*k
+count += m%(k+1)
+
+result = 0
+result += count * first
+result += (m-count) * second
+
+print(result)
+
+
+
+# 2번. 숫자 카드 게임
+
+n, m = map(int, input().split())
+value = 0
+
+for _ in range(n):
+    card = list(map(int, input().split()))
+    min_value = min(card)
+    value = max(value, min_value)
+
+print(value)
+
+
+
+# 3번. 1이 될 때까지
+
+n, k = map(int, input().split())
+cnt = 0
+
+while n != 1:
+    if n%k == 0:
+        n //= k
+        cnt += 1
+    else:
+        n -= 1
+        cnt += 1
+
+print(cnt)
+
+
+
+
