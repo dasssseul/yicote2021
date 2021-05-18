@@ -202,3 +202,125 @@ print(cnt)
 
 
 
+# 구현 알고리즘 복습
+
+# 1번. 상하좌우
+
+n = int(input())
+plans = input().split()
+
+x, y = 1, 1
+
+move_types = ['L', 'R', 'U', 'D']
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+
+for plan in plans:
+    for i in range(len(move_types)):
+        if plan == move_types[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+    if nx < 1 or ny < 1 or nx > n or ny > n:
+        continue
+    x, y = nx, ny
+
+print(x, y)
+
+
+
+# 2번. 시각
+
+n = int(input())
+cnt = 0
+
+for h in range(n+1):
+    for m in range(60):
+        for s in range(60):
+            if '3' in str(h) + str(m) + str(s):
+                cnt += 1
+
+print(cnt)
+
+
+
+# 3번. 왕실의 나이트
+
+input_data = input()
+
+row = int(input_data[1])
+column = int(ord(input_data[0])) - int(ord('a')) + 1
+
+steps = [(2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)]
+
+cnt = 0
+
+for step in steps:
+    next_row = row + step[1]
+    next_column = column + step[0]
+    if 1 <= next_row <= 8 and 1 <= next_column <= 8:
+        cnt += 1
+
+print(cnt)
+
+
+
+# 4번. 게임개발
+
+n, m = map(int,input().split())
+
+x, y, direction = map(int, input().split())
+
+# 방문 처리를 위한 맵
+d = [[0]*m for _ in range(n)]
+# 현재 위치 방문 처리
+d[x][y] = 1
+
+# 육지, 바다 맵 정보
+array = []
+for _ in range(n):
+    array.append(list(map(int, input().split())))
+
+# 북, 동, 남, 서 이동에 따른 좌표
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+# 왼쪽 방향 회전 함수
+def turn_left():
+    global direction
+    direction -= 1
+    if direction == -1:
+        direction = 3
+
+# 방문한 칸, 회전 횟수 세기
+cnt = 1
+turn_time = 0
+
+# 이동 구현
+
+while True:
+    turn_left()
+    nx = x + dx[direction]
+    ny = y + dy[direction]
+    if d[nx][ny] == 0 and array[nx][ny] == 0:
+        x, y = nx, ny
+        d[nx][ny] = 1
+        cnt += 1
+        turn_time = 0
+        continue
+    else:
+        turn_time += 1
+    if turn_time == 4:
+        nx = x - dx[direction]
+        ny = y - dy[direction]
+        if array[nx][ny] == 0:
+            x, y = nx, ny
+        else:
+            break
+        turn_time = 0
+
+print(cnt)
+
+
+
+
+
