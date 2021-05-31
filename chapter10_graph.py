@@ -2,6 +2,7 @@
 # [이코테 2021 강의 몰아보기]
 # chapter10. graph
 
+
 # 서로소 집합 자료구조 : 기본적인 구현 방법
 
 # 특정 원소가 속한 집합을 찾기
@@ -315,4 +316,5 @@ for edge in edges:
         last = cost
 
 print(result-last)
+
 
