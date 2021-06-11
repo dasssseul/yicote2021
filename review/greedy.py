@@ -112,5 +112,64 @@ print(target)
 
 
 
+# Q5. 볼링공 고르기 
+
+# 나의 풀이
+
+# 볼링공의 개수와 최대 무게 입력 받기
+n, m = map(int, input().split())
+
+# 볼링공의 무게 입력 받기
+weight = list(map(int, input().split()))
+
+# 서로 다른 공을 골라서 묶어줄 배열 초기화
+balls = []
+
+for i in range(n):
+    for j in range(i+1, n):
+        # i번째 공의 무게와 j번째 공의 무게가 다를 경우에만, balls에 추가
+        if weight[i] != weight[j]:
+            balls.append((weight[i], weight[j]))
+        # 같은 경우 다음으로 넘어가기
+        else:
+            continue
+
+# balls에 포함된 조합의 길이 출력
+print(len(balls))
+
+
+
+# Q5. 볼링공 고르기 
+
+# 책의 풀이
+
+# 볼링공의 개수와 최대 무게 입력 받기
+n, m = map(int, input().split())
+
+# 볼링공의 무게 입력 받기
+data = list(map(int, input().split()))
+
+# 1부터 10까지의 무게를 담을 수 있는 리스트
+array = [0] * 11
+
+for i in data:
+    # 각 무게에 해당하는 볼링공의 개수 카운트
+    array[i] += 1
+
+result = 0
+
+# 1부터 m까지의 각 무게에 대하여 처리
+for i in range(1, m+1):
+    # 무게가 i인 볼링공의 개수 제외
+    n -= array[i]
+    # 무게가 i인 볼링공이 선택할 수 있는 경우의 수와 곱하기
+    result += array[i] * n
+
+
+print(result)
+
+
+
+
 
 
