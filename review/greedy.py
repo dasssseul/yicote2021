@@ -170,6 +170,48 @@ print(result)
 
 
 
+# Q6. 무지의 먹방 라이브
+
+import heapq
+
+def solution(food_times, k):
+    # 전체 음식을 먹는 시간보다 k가 크거나 같다면
+    if sum(food_times) <= k:
+        return -1
+
+    q = []
+    # 시간이 작은 음식부터 빼야하기 때문에
+    # 입력받은 food_times를 (음식 시간, 음식 번호) 튜플 형태로 우선순위 큐에 삽입
+    for i in range(len(food_times)):
+        heapq.heappush(q, (food_times[i], i+1))
+
+    # 먹기 위해 사용한 시간
+    sum_value = 0
+
+    # 직전에 다 먹은 음식의 시간 
+    previous = 0
+
+    # 남은 음식의 개수
+    length = len(food_times)
+
+    while sum_value + (q[0][0] - previous) * length <= k:
+        # 현재 큐에서 가장 적게 걸리는 음식의 시간 꺼내기
+        now = heapq.heappop(q)[0]
+        # 먹기 위해 사용한 시간 += (현재 음식의 시간 - 직전에 다 먹은 음식의 시간) * 남은 음식의 개수
+        sum_value += (now - previous) * length
+        # 현재의 음식을 다 먹었으므로 남은 음식의 수 -1
+        length -= 1
+        # 직전에 다 먹은 음식의 시간 업데이트
+        previous = now
+    
+    # 남은 음식 중에 몇 번째 음식인지 확인하기 위해 
+    result = sorted(q, key = lambda x : x[1]) # 음식 번호 순으로 정렬
+    return result[(k-sum_value)%length][1] # 남은 시간을 남은 음식의 개수로 나눈 나머지를 이용해 출력
+
+# 결과 확인
+print(solution([3, 1, 2], 5))  
+
+
 
 
 
