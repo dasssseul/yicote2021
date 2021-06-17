@@ -158,3 +158,6 @@ def solution(s):
         answer = min(answer, len(divided))
     return answer
 
+
+
+
