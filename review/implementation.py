@@ -116,3 +116,45 @@ if cnt != 0:
 # 최종 결과 출력(join 함수)
 print(''.join(result))
 
+
+# Q9. 문자열 압축
+
+def solution(s):
+    answer = len(s)
+    # 1부터 문자열 길이의 절반까지 step을 설정
+    for step in range(1,(len(s)//2)+1):
+        # 문자열을 저장할 divided 초기화
+        divided = ""
+        # 맨 앞에서부터 step만큼의 문자열 추출
+        previous = s[0:step]
+        # previous 문자열의 길이 1로 초기화
+        count = 1
+        # step만큼 증가시킨 다음 문자열 추출을 위한 for문
+        for i in range(step, len(s), step):
+            # 이전의 문자열과 추출한 문자열이 같다면
+            if previous == s[i:i+step]:
+                # 문자열의 길이 +1
+                count += 1
+            # 다르다면
+            else:
+                # 길이가 2보다 크거나 같다면
+                if count >= 2:
+                    # divided에 문자열의 길이와 함께 이전 문자열 저장
+                    divided += str(count) + previous 
+                # 길이가 2보다 작다면(=1이라면)
+                else:
+                    # divided에 이전 문자열만 저장 (길이 저장 X)
+                    divided += previous
+                # 이전 문자열을 현재 추출한 문자열로 초기화
+                previous = s[i:i+step]
+                # 문자열의 길이 역시 초기화
+                count = 1
+        # 남은 문자열에 대한 처리 (위와 동일)
+        if count >= 2:
+            divided += str(count) + previous
+        else:
+            divided += previous
+        # 만들어진 문자열 중 길이가 가장 짧은 경우로 answer 업데이트
+        answer = min(answer, len(divided))
+    return answer
+
